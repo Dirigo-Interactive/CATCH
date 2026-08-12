@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>VA11y Comprehensive Test</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            padding: 20px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        section {
+            border: 1px solid #ccc;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 5px;
+        }
+
+        h2 {
+            border-bottom: 2px solid #333;
+            padding-bottom: 5px;
+        }
+
+        .fail {
+            border: 2px solid red;
+            padding: 5px;
+        }
+
+        .pass {
+            border: 2px solid green;
+            padding: 5px;
+        }
+
+        div[role="img"] {
+            display: block;
+            width: 300px;
+            height: 200px;
+            background-image: url("https://picsum.photos/301/200");
+        }
+    </style>
+</head>
+
+<body>
+    <header role="banner">
+        <h1>VA11y Comprehensive Test Page</h1>
+        <p>This page contains various accessibility patterns and anti-patterns to test the VA11y bookmarklet.</p>
+    </header>
+
+    <main role="main">
+        <!-- 1. Name Module Tests -->
+        <section aria-labelledby="name-heading">
+            <h2 id="name-heading">1. Accessible Names</h2>
+
+            <h3>Success Cases</h3>
+            <div class="pass">
+                <label for="inp-label">Explicit Label:</label>
+                <input id="inp-label" type="text" value="Has Label">
+            </div>
+            <div class="pass">
+                <label>
+                    Implicit Label
+                    <input type="checkbox">
+                </label>
+            </div>
+            <div class="pass">
+                <button aria-label="Close Modal">X</button> (aria-label)
+            </div>
+            <div class="pass">
+                <span id="btn-desc">Save Changes</span>
+                <button aria-labelledby="btn-desc">Icon</button> (aria-labelledby)
+            </div>
+
+            <h3>Failure Cases</h3>
+            <div class="fail">
+                <input type="text" value="No Label"> (Missing Label)
+            </div>
+            <div class="fail">
+                <button></button> (Empty Button)
+            </div>
+        </section>
+
+        <!-- 2. Images Module Tests -->
+        <section aria-labelledby="img-heading">
+            <h2 id="img-heading">2. Images and SVGs</h2>
+
+            <h3>Success Cases</h3>
+            <div class="pass">
+                <img src="https://picsum.photos/300/200" alt="Placeholder image; alt text is not accurate"> (Standard
+                Alt)
+            </div>
+            <div class="pass">
+                <img src="https://placehold.co/100" alt=""> (Decorative/Empty Alt)
+            </div>
+            <div class="pass">
+                <div role="img" aria-label="CSS Image"></div> (Role=img + aria-label)
+            </div>
+
+            <!-- SVG Scenarios -->
+            <div class="pass">
+                <svg id="svg-title" width="50" height="50" viewBox="0 0 100 100" role="img">
+                    <title>Blue Circle</title>
+                    <circle cx="50" cy="50" r="40" fill="blue" />
+                </svg> (SVG with &lt;title&gt;)
+            </div>
+            <div class="pass">
+                <svg id="svg-aria-label" width="50" height="50" viewBox="0 0 100 100" aria-label="Red Square"
+                    role="img">
+                    <rect x="10" y="10" width="80" height="80" fill="red" />
+                </svg> (SVG with aria-label)
+            </div>
+            <div class="pass">
+                <span id="svg-label-source" style="display:none;">Green Triangle</span>
+                <svg id="svg-labelledby" width="50" height="50" viewBox="0 0 100 100" aria-labelledby="svg-label-source"
+                    role="img">
+                    <polygon points="50,15 90,85 10,85" fill="green" />
+                </svg> (SVG with aria-labelledby)
+            </div>
+
+            <h3>Failure Cases</h3>
+            <div class="fail">
+                <img src="https://picsum.photos/300/201" /> (Missing Alt Attribute)
+            </div>
+            <div class="fail">
+                <svg id="svg-no-name" width="50" height="50" viewBox="0 0 100 100" role="img">
+                    <circle cx="50" cy="50" r="40" fill="gray" />
+                </svg> (SVG with No Name)
+            </div>
+
+            <h3>Input Filtering</h3>
+            <div class="pass">
+                <input type="image" src="https://placehold.co/50" alt="Submit Button Image"> (Input type="image"
+                - SUCESS)
+            </div>
+            <div class="pass">
+                <input type="text" value="Should be ignored by Image Module"> (Input type="text" - IGNORED)
+            </div>
+
+        </section>
+
+        <!-- 3. Headings Module Tests -->
+        <section aria-labelledby="head-heading">
+            <h2 id="head-heading">3. Headings</h2>
+
+            <h3>Structure</h3>
+            <h4>H4 following H2 (Skipped Level)</h4>
+            <h6>H6 following H4 (Skipped Level)</h6>
+
+            <h3>Escaping Check: &lt;span&gt;Tags&lt;/span&gt;</h3>
+
+            <h3>Empty Headings</h3>
+            <h5></h5> (Empty H5)
+
+            <h3>Shadow DOM Headings</h3>
+            <div id="shadow-host"></div>
+        </section>
+
+        <!-- 4. Structure Module Tests -->
+        <section aria-labelledby="struct-heading">
+            <h2 id="struct-heading">4. Structure & Semantics</h2>
+
+            <nav role="navigation">Navigation (nav)</nav>
+            <aside role="complementary">Aside (complementary)</aside>
+
+            <blockquote>Blockquote</blockquote>
+
+            <ul>
+                <li>List Item 1</li>
+                <li>List Item 2</li>
+            </ul>
+
+            <figure>
+                <figcaption>Figure Caption</figcaption>
+            </figure>
+
+            <div role="feed">Feed Role</div>
+            <div role="toolbar">Toolbar Role</div>
+            <div role="tooltip">Tooltip Role</div>
+            <div role="math">Math Role</div>
+        </section>
+        <!-- 5. Element States Tests -->
+        <section aria-labelledby="state-heading">
+            <h2 id="state-heading">5. Element States</h2>
+
+            <div class="pass">
+                <button aria-expanded="true">Expanded Button</button> (aria-expanded="true")
+            </div>
+            <div class="pass">
+                <input type="text" disabled value="Disabled Input"> (disabled)
+            </div>
+            <div class="pass">
+                <input type="checkbox" checked> Checked Checkbox
+            </div>
+            <div class="pass">
+                <input type="text" required aria-invalid="true" value="Invalid"> (required, aria-invalid)
+            </div>
+        </section>
+
+        <!-- 6. Shadow DOM Name Tests -->
+        <section aria-labelledby="shadow-name-heading">
+            <h2 id="shadow-name-heading">6. Shadow DOM Names</h2>
+
+            <h3>Single Shadow</h3>
+            <div id="shadow-name-host"></div>
+
+            <h3>Nested Shadow</h3>
+            <div id="nested-shadow-host"></div>
+        </section>
+
+
+    </main>
+
+    <footer role="contentinfo">
+        <p>Test Page Footer</p>
+    </footer>
+
+    <script>
+        // Inject shadow DOM content (Headings Test)
+        const host = document.getElementById('shadow-host');
+        if (host) {
+            const shadow = host.attachShadow({ mode: 'open' });
+            shadow.innerHTML = `
+                <h3>Heading Level 3 (In Shadow)</h3>
+                <p>Some shadow content.</p>
+            `;
+        }
+
+        // Inject Shadow DOM content (Name Test)
+        const nameHost = document.getElementById('shadow-name-host');
+        if (nameHost) {
+            const shadow = nameHost.attachShadow({ mode: 'open' });
+            shadow.innerHTML = `
+                <button id="shadow-btn" aria-label="Shadow Button">Shadow Button</button>
+            `;
+        }
+
+        // Inject Nested Shadow DOM content (Name Test)
+        const nestedHost = document.getElementById('nested-shadow-host');
+        if (nestedHost) {
+            const shadow1 = nestedHost.attachShadow({ mode: 'open' });
+            shadow1.innerHTML = `<div id="nested-host-inner"></div>`;
+
+            const nestedHostInner = shadow1.getElementById('nested-host-inner');
+            const shadow2 = nestedHostInner.attachShadow({ mode: 'open' });
+            shadow2.innerHTML = `
+                <input type="text" aria-label="Nested Shadow Input" placeholder="Nested Input">
+            `;
+        }
+    </script>
+</body>
+
+</html>
