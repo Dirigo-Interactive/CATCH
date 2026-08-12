@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="color-scheme" content="light dark">
   <title>Accessibility testing bookmarklets</title>
-  <meta name="description" content="Accessibility testing bookmarklets">
+  <meta name="description" content="CATCH">
 
   <!-- Pico.css -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2.1.1/css/pico.min.css">
@@ -22,8 +22,8 @@
   <!-- Header -->
   <header class="container">
     <hgroup>
-      <h1>Accessibility testing bookmarklets</h1>
-      <p>Bookmarklets for improved accessibility testing with Shadow DOM/Web components support.</p>
+      <h1>CATCH</h1>
+      <p>Contrast · Accessible name · Text spacing · Color · Headings</p>
     </hgroup>
     <nav>
   </header>
@@ -33,29 +33,29 @@
   <main class="container">
     <!-- Preview -->
     <section id="preview">
-      <h2>Bookmarklets</h2>
-      <p>
-        To use a bookmarklet, save it as a bookmark by dragging the link to your bookmarks bar or by manually creating a
-        new bookmark and pasting the JavaScript code into the URL field. Once saved, navigate to the webpage you want to
-        use it on and click the bookmarklet from your bookmarks bar to execute the code.
-      </p>
+      <h2>Dirigo Interactive</h2>
+      <p>At Dirigo Interactive, we help organizations create inclusive, user-friendly digital experiences that work for everyone. As a Maine-based, disability-owned consultancy, we specialize in integrating accessibility strategy, inclusive design, and accessible software delivery into digital products from the ground up</p>
     </section>
     <!-- ./ Preview -->
 
     <!-- Article-->
     <article id="va11y">
-      <h3>VA11y</h3>
+      <h3>About CATCH</h3>
+      <p>CATCH is a lightweight accessibility companion tool designed to help testers inspect common issues on web pages. It runs as a bookmarklet or injected script and provides an interactive overlay for:</p>
+      <ul>
+        <li>Accessible name inspection</li>
+        <li>Image and alt text review</li>
+        <li>Heading structure validation</li>
+        <li>Contrast and color guidance</li>
+        <li>Text spacing and layout checks</li>
+      </ul> 
       <p>
-        VA11y is a unified accessibility testing tool. It provides checks for accessible names, image text
-        alternatives, heading structure, semantic page structure, text-spacing, and grayscale.
-      </p>
-      <p>
-        <a href="https://jasonday.github.io/VA11y/test_va11y_comprehensive.html" target="_blank">View the Comprehensive
+        <a href="https://dirigo-interactive.github.io/CATCH/test_catch_comprehensive.html" target="_blank">View the Comprehensive
           Test Page</a>
       </p>
       <footer>
         <p> Drag <a
-            href="javascript:(function(){!function(){&quot;use strict&quot;;const e=document.createElement(&quot;script&quot;);e.id=&quot;va11y-script&quot;;e.type=&quot;text/javascript&quot;,e.charset=&quot;UTF-8&quot;,e.src=`https://cdn.jsdelivr.net/gh/jasonday/VA11y@1/va11y.js`,e.onload=()=>{console.log(&quot;Loaded va11y.js&quot;);if(typeof va11yVersion!==&quot;undefined&quot;)console.log(&quot;VA11y version:&quot;,va11yVersion)},e.onerror=e=>{console.error(&quot;Failed to load va11y.js:&quot;,e),alert(&quot;Failed to load va11y bookmarklet.&quot;)},document.documentElement.appendChild(e)}();}());">VA11y</a>
+            href="javascript:(function(){!function(){"use strict";const e=document.createElement("script");e.id="catch-script";e.type="text/javascript",e.charset="UTF-8",e.src=`https://cdn.jsdelivr.net/gh/Dirigo-Interactive/CATCH@1/CATCH.js`,e.onload=()=>{console.log("Loaded CATCH.js");if(typeof catchVersion!=="undefined")console.log("CATCH version:",catchVersion)},e.onerror=e=>{console.error("Failed to load CATCH.js:",e),alert("Failed to load CATCH bookmarklet.")},document.documentElement.appendChild(e)}();}()); ">CATCH</a>
           to your bookmarks.</p>
       </footer>
     </article>
@@ -66,8 +66,8 @@
   </main>
   <!-- ./ Main -->
   <footer class="container">
-    <a href="https://jasonbyday.com">Jason Day</a>. View on <a
-      href="https://github.com/jasonday/Accessibility-Testing-Bookmarklets">Github</a>.
+    <a href="https://dirigointeractive.com">Dirigo Interactive</a>. View on <a
+      href="https://github.com/Dirigo-Interactive/CATCH">Github</a>.
   </footer>
 
 
